@@ -14,12 +14,7 @@ const bot = new TelegramBot(token, {polling: true});
 const admins = [356559570]
 
 const getCurrentDateString = () => {
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, '0');
-    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    const yyyy = today.getFullYear();
-    
-    return mm + '-' + dd + '-' + yyyy;
+    return new Date().toISOString()
 }
 
 bot.on('message', (msg) => {
@@ -37,7 +32,7 @@ bot.on('message', (msg) => {
     
             if(result) {
                 setTimeout(() => {
-                    bot.sendAudio(chatId, filename)
+                    bot.sendVoice(chatId, filename)
                 }, TIMEOUT)
             }
         } catch (e) { console.error(e) }
